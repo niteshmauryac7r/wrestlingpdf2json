@@ -35,14 +35,19 @@ def fetch_participant_details(target_player_detail_id):
             if selected_participant:
                 selected_participant_details = {
                     "Player ID": selected_participant['player_detail_id'],
-                    "Kit Unique ID": selected_participant['kitd_unique_id'],
-                    "Full Name": f"{selected_participant['first_name']} {selected_participant['last_name']}",
+                    "Kitd Unique ID": selected_participant['kitd_unique_id'],
+                    "First Name": f"{selected_participant['first_name']} ",
+                    "Last Name":f"{selected_participant['last_name']}",
                     "Date of Birth": selected_participant['date_of_birth'],
                     "Gender": selected_participant['gender'],
-                    "State": f"{selected_participant['state_name']} (ID: {selected_participant['state_id']})",
-                    "Sport": f"{selected_participant['sport_name']} (ID: {selected_participant['sport_id']})",
-                    "Category": f"{selected_participant['category_name']} (ID: {selected_participant['category_id']})",
-                    "Event": f"{selected_participant['event_name']} (ID: {selected_participant['event_id']})",
+                    "State": f"{selected_participant['state_name']} ",
+                    "State_id":f"{selected_participant['state_id']}",
+                    "Sport": f"{selected_participant['sport_name']}",
+                    "Sport_ID": f"{selected_participant['sport_id']}",
+                    "Category": f"{selected_participant['category_name']} ",
+                    "Category_ID":f"{selected_participant['category_id']}",
+                    "Event": f"{selected_participant['event_name']}",
+                    "Event_ID": f"{selected_participant['event_id']}"
                 }
                 return selected_participant_details
             else:
@@ -125,7 +130,7 @@ def process_pdf(pdf_file_path, selected_participant_details, selected_participan
 
         # Create the JSON data structure
         data1 = {
-            "tournament_name": sport,
+            "tournament_name": "National Games 2023-Goa",
             "Sport": "Wrestling",
             "sport_id": "2",
             "event": event,
