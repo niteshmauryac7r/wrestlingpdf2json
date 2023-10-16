@@ -131,48 +131,43 @@ def process_pdf(pdf_file_path, selected_participant_details, selected_participan
 
         # Create the JSON data structure
         data1 = {
-            "status": "success",
-            "statusCode": 200,
-            "message": "Ok",
-            "data": {
-            "tournament_name": "National Games 2023-Goa",
-            "sport": "Wrestling",
-            "sport_id": "2",
-            "match_id": 7,
-            "event": event,
-            "event_id": 1042,
-            "schedule_date_and_time": date,
-            "stage": wg,
-            "category": category,
-            "sub_matches_summary": {
-            "team1_player_details": selected_participant_details,
-            "team2_player_details": selected_participant_details2,
-            "individual_matches_score": {
-                "team1_score": {
-                    "period1": a.iloc[4, 0],
-                    "technical_points + challenge1": a.iloc[4, 1],
-                    "total1": a.iloc[4, 2],
-                    "period2": a.iloc[6, 0],
-                    "technical_points + challenge2": a.iloc[6, 1],
-                    "total2": a.iloc[6, 2],
-                },
-                "team2_score": {
-                    "period1": a.iloc[4, 4],
-                    "technical_points + challenge1": a.iloc[4, 5],
-                    "total1": a.iloc[4, 6],
-                    "period2": a.iloc[6, 4],
-                    "technical_points + challenge2": a.iloc[6, 5],
-                    "total2": a.iloc[6, 6],
-                },
-            },
-            "team1_score": total_athlete1,
-            "team2_score": total_athlete2,
-            "won": winner,
-            "loss": losser,
-            "Classifictaion_points": f"{point1}:{point2}",
+            9: {
+                "status": "success",
+                "statusCode": 200,
+                "message": "Ok",
+                "data": {
+                    "tournament_name": "National Games 2023-Goa",
+                    "sport": "Wrestling",
+                    "sport_id": "2",
+                    "match_id": 7,
+                    "event": "Wrestling 51 Kg",
+                    "event_id": 1042,
+                    "schedule_date_and_time": date,
+                    "venue": "S.P.M.Stadium, GoaCollage,University Farmagudi Ponda Panjim",
+                    "stage": "Qualifying Round",
+                    "team1": "Madhya Pradesh",
+                    "team2": "Andhra Pradesh",
+                    "won": "Madhya Pradesh",
+                    "loss": "Andhra Pradesh",
+                    "team1_total_score": 10,
+                    "team2_total_score": 3,
+                    "sub_matches_summary": {
+                        "team1_player_details": selected_participant_details,
+                        "team2_player_details": selected_participant_details2,
+                        "individual_matches_score": {
+                            "team1_score": [4,6],
+                            "team2_score": [2,1],
+                        },
+                        "team1_score": 10,
+                        "team2_score": 3,
+                        "won": "Madhya Pradesh",
+                        "loss": "Andhra Pradesh",
+                        "Classification_points": f"{point1}:{point2}"
+                    }
+                }
             }
         }
-        }
+
         return data1
 
     except Exception as e:
