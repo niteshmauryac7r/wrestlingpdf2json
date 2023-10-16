@@ -36,8 +36,7 @@ def fetch_participant_details(target_player_detail_id):
                 selected_participant_details = {
                     "Player ID": selected_participant['player_detail_id'],
                     "Kitd Unique ID": selected_participant['kitd_unique_id'],
-                    "First Name": f"{selected_participant['first_name']} ",
-                    "Last Name":f"{selected_participant['last_name']}",
+                    "player_name": f"{selected_participant['first_name']} {selected_participant['last_name']}",
                     "Date of Birth": selected_participant['date_of_birth'],
                     "Gender": selected_participant['gender'],
                     "State": f"{selected_participant['state_name']} ",
@@ -125,27 +124,31 @@ def process_pdf(pdf_file_path, selected_participant_details, selected_participan
 
         if total_athlete1 > total_athlete2:
             winner = athlete1
+            losser = athlete2
         else:
             winner = athlete2
+            losser = athlete1
 
         # Create the JSON data structure
         data1 = {
+            "status": "success",
+            "statusCode": 200,
+            "message": "Ok",
+            "data": {
             "tournament_name": "National Games 2023-Goa",
-            "Sport": "Wrestling",
+            "sport": "Wrestling",
             "sport_id": "2",
+            "match_id": 7,
             "event": event,
             "event_id": 1042,
-            "date": date,
-            "Weight_group": wg,
+            "schedule_date_and_time": date,
+            "stage": wg,
             "category": category,
-            "red_side": {
-                "athlete_details": selected_participant_details
-            },
-            "blue_side": {
-                "athlete_details": selected_participant_details2
-            },
-            "match_details": {
-                "red_side": {
+            "sub_matches_summary": {
+            "team1_player_details": selected_participant_details,
+            "team2_player_details": selected_participant_details2,
+            "individual_matches_score": {
+                "team1_score": {
                     "period1": a.iloc[4, 0],
                     "technical_points + challenge1": a.iloc[4, 1],
                     "total1": a.iloc[4, 2],
@@ -153,7 +156,7 @@ def process_pdf(pdf_file_path, selected_participant_details, selected_participan
                     "technical_points + challenge2": a.iloc[6, 1],
                     "total2": a.iloc[6, 2],
                 },
-                "blue_side": {
+                "team2_score": {
                     "period1": a.iloc[4, 4],
                     "technical_points + challenge1": a.iloc[4, 5],
                     "total1": a.iloc[4, 6],
@@ -161,13 +164,15 @@ def process_pdf(pdf_file_path, selected_participant_details, selected_participan
                     "technical_points + challenge2": a.iloc[6, 5],
                     "total2": a.iloc[6, 6],
                 },
-            "Total_points_Red_side": total_athlete1,
-            "Total_points_Blue_side": total_athlete2,
-            "Winner": winner,
+            },
+            "team1_score": total_athlete1,
+            "team2_score": total_athlete2,
+            "won": winner,
+            "loss": losser,
             "Classifictaion_points": f"{point1}:{point2}",
             }
         }
-
+        }
         return data1
 
     except Exception as e:
