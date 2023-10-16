@@ -131,17 +131,18 @@ def process_pdf(pdf_file_path, selected_participant_details, selected_participan
 
         # Create the JSON data structure
         data1 = {
-            9: {
                 "status": "success",
                 "statusCode": 200,
                 "message": "Ok",
                 "data": {
+                    "9": {
                     "tournament_name": "National Games 2023-Goa",
                     "sport": "Wrestling",
                     "sport_id": "2",
                     "match_id": 9,
                     "event": "Wrestling 51 Kg",
                     "event_id": 1042,
+                    "event_type": "individual",
                     "schedule_date_and_time": date,
                     "venue": "S.P.M.Stadium, GoaCollage,University Farmagudi Ponda Panjim",
                     "stage": "Qualifying Round",
@@ -151,7 +152,7 @@ def process_pdf(pdf_file_path, selected_participant_details, selected_participan
                     "loss": "Andhra Pradesh",
                     "team1_total_score": 10,
                     "team2_total_score": 3,
-                    "sub_matches_summary": {
+                    "sub_matches_summary": [{
                         "team1_player_details": selected_participant_details,
                         "team2_player_details": selected_participant_details2,
                         "individual_matches_score": {
@@ -162,11 +163,13 @@ def process_pdf(pdf_file_path, selected_participant_details, selected_participan
                         "team2_score": 3,
                         "won": "Madhya Pradesh",
                         "loss": "Andhra Pradesh",
-                        "Classification_points": f"{point1}:{point2}"
+                        "Classification_points": f"{point1}:{point2}",
                     }
+                    ]
+                }
                 }
             }
-        }
+
 
         return data1
 
