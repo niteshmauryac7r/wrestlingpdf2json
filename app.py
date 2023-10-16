@@ -39,7 +39,7 @@ def fetch_participant_details(target_player_detail_id):
                     "player_name": f"{selected_participant['first_name']} {selected_participant['last_name']}",
                     "Date of Birth": selected_participant['date_of_birth'],
                     "Gender": selected_participant['gender'],
-                    "State": f"{selected_participant['state_name']} ",
+                    "state": f"{selected_participant['state_name']} ",
                     "State_id":f"{selected_participant['state_id']}",
                     "Sport": f"{selected_participant['sport_name']}",
                     "Sport_ID": f"{selected_participant['sport_id']}",
@@ -153,12 +153,16 @@ def process_pdf(pdf_file_path, selected_participant_details, selected_participan
                     "team1_total_score": 10,
                     "team2_total_score": 3,
                     "sub_matches_summary": [{
-                        "team1_player_details": selected_participant_details,
-                        "team2_player_details": selected_participant_details2,
+                        "team1_player_details": [selected_participant_details],
+                        "team2_player_details": [selected_participant_details2],
+
                         "individual_matches_score": {
                             "team1_score": [4,6],
                             "team2_score": [2,1],
                         },
+                        "sub_event": "Wrestling 51 Kg",
+                        "team1": "Madhya Pradesh",
+                        "team2": "Andhra Pradesh",
                         "team1_score": 10,
                         "team2_score": 3,
                         "won": "Madhya Pradesh",
