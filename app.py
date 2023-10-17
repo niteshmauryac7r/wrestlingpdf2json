@@ -15,6 +15,7 @@ AZURE_STORAGE_CONNECTION_STRING = "DefaultEndpointsProtocol=https;AccountName=bl
 blob_service_client = BlobServiceClient.from_connection_string(AZURE_STORAGE_CONNECTION_STRING)
 container_name = "wrestlingpdf2json"
 
+
 def fetch_participant_details(target_player_detail_id):
     api_url = f"http://216.48.180.88:8099/api/tsr/participantslist?token=37|XVJoJ36iTyTqSpucMrDEFjZWpJCiqn81PIbOgb1Q&sport=wrestling"
 
@@ -221,11 +222,18 @@ def upload_pdf_to_blob():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route('/process_blob', methods=['GET'])
+@app.route('/', methods=['GET'])
 def process_blob():
     try:
+        r = request.args.get('r')
+        system = request.args.get('system')
+        request_type = request.args.get('request_type')
+        sport = request.args.get('sport')
+        event_id = request.args.get('event_id')
+        format = request.args.get('format')
         # Get the name of the blob from the request parameter
-        blob_name = request.args.get('blob_name')
+        blob_name = "scoresheet with result.pdf"
+        container_name = "wrestlingpdf2json"
 
         # Download the blob from Azure Blob Storage to a temporary file
         blob_client = blob_service_client.get_blob_client(container=container_name, blob=blob_name)
