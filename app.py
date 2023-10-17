@@ -167,7 +167,6 @@ def process_pdf(pdf_file_path, selected_participant_details, selected_participan
                         "team2_score": 3,
                         "won": "Madhya Pradesh",
                         "loss": "Andhra Pradesh",
-                        "Classification_points": f"{point1}:{point2}",
                     }
                     ]
                 }
